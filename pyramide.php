@@ -25,6 +25,46 @@
         //On saute une ligne
         echo '<br/>';
     }
+
+    $pyramide = [];
+    //Version tableau multidimensionnel (un peu compliké)
+    for ($x=1; $x <= $etages ; $x++) { 
+        $ligne = [];
+
+        $nbEspaces = $etages - $x;
+        $nbEtoiles = $tailleEtage - $nbEspaces*2;
+
+        for ($y=1; $y <= $tailleEtage ; $y++) { 
+            if($y <= $nbEspaces) {
+                array_push($ligne, '_');
+            } elseif( $y <= $nbEspaces+$nbEtoiles) {
+                array_push($ligne, '*');
+            }
+        }
+
+        $pyramide[$x-1] = $ligne;
+        
+    }
+    /*
+    Le foreach en php nous permet d'itérer sur des array,
+    il prend en premier argument l'array sur lequel itérer
+    suivi du mot clef as puis du nom de la variable qui sera
+    disponible au sein de la boucle
+    Si on veut également avoir accès à la clef/index, on utilisera
+    la notation ($tableau as $clef=>valeur) au lieu de
+    ($tableau as $valeur)
+    */
+    foreach($pyramide as $ligne) {
+        foreach($ligne as $caractere) {
+            echo $caractere;
+        }
+        echo '<br/>';
+    }
+ 
+    
+    for ($i=0; $i < count($pyramide); $i++) { 
+        # code...
+    }
 ?>
 
 
